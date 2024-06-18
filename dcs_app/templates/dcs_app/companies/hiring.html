@@ -1,0 +1,17 @@
+{%extends 'dcs_app/companies/main.html'%}
+{%block content%}
+<div class="dc">
+<div class="frm">
+<form method="post">
+    {% csrf_token %}
+        {% for field in form %}
+        <div class="form-floating mb-3">
+            {{ field }}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btnx w-50 d-block mx-auto" style="height: 5vh;">Submit</button>
+</form>
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,8 @@
+{%if messages %}
+{%for m in messages%}
+<div class="bgcol fade show d-block mx-auto mt-3 alert-dismissible" style="width: 50%; height: 5vh; border-radius: 3vh;"
+    role="alert">
+    <strong style="font-size: 3vh;" class="itim d-flex justify-content-center">{{m}}</strong>
+</div>
+{%endfor%}
+{%endif%}

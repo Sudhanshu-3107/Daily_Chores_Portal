@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <title>Careers</title>
+    {%include 'dcs_app/common/common_css.html'%}
+    <style>
+        a{
+            color: rgb(255, 47, 79);
+        }
+    
+    </style>
+
+</head>
+<body>
+    {%include 'dcs_app/common/header.html'%}
+    <div class="dc">
+    {% for career in careers%}
+    <div class="card bgcol m-2 p-1" style="width: 300px;">
+        <div class="card-body">
+          <h2 class="card-title pacifico">{{career.job_category.emp_category}}</h2>
+          <h3 class="card-text">Company Name : {{career.company.c_name}}</h3>
+          <h3 class="card-text">Requirement : {{career.job_requirement}}</h3>
+          <h3 class="card-text">Job Description : {{career.job_description}}</h3>
+          <h3 class="card-text">Location : {{career.job_location}}</h3>
+          <h3 class="card-text">Salary : {{career.job_salary}}</h3>
+          <h3 class="card-text">Age Limit : {{career.job_age_limit}}</h3>
+          <h3 class="card-text">Gender : {{career.job_gender}}</h3>
+          <h3 class="card-text">Total Seats : {{career.job_seats}}</h3>
+          <h3 class="card-text">Last Date : {{career.job_lastdate_toapply}}</h3>
+          <h3 class="card-text">Job Mail : {{career.job_mail}}</h3>
+          <h3 class="card-text">Job Link : <a href="{%url 'jobs' c_id=career.company_id %}">{{career.company.c_name}}.{{career.job_post_link}}</a></h3>
+         </div>
+    </div>
+    {%endfor%}
+</div>
+
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

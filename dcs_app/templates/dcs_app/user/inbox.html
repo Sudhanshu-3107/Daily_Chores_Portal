@@ -1,0 +1,26 @@
+{% extends 'dcs_app/user/main.html' %}
+{% block content %}
+<h1 class="card-title pacifico text-center">Inbox</h1>
+<div class="dc">
+    {% for complaint in complaints%}
+    {%if complaint.resolve%}
+    <div class="card bgcol m-2 p-1" style="width: 30vh;">
+        <div class="card-body">
+          <h2 class="card-title">Complaint: {{complaint.complaint}}</h2>
+          <h4 class="card-text text-muted">Complaint Date: {{complaint.created}}</h4>
+          <h2 class="card-text">Resolve: {{complaint.resolve}}</h2>
+          <h4 class="card-text text-muted">Resolve Date: {{complaint.updated}}</h4>
+         </div>
+         {%else%}
+         <div class="card bgcol m-2 p-1" style="width: 30vh;">
+            <div class="card-body">
+         <h2 class="card-title">Complaint: {{complaint.complaint}}</h2>
+          <h4 class="card-text text-muted">Complaint Date: {{complaint.created}}</h4>
+         <h3 class="card-text text-center mt-5">No Resolve for now</h3>
+        </div>
+    {%endif%}
+    </div>
+    {%endfor%}
+</div>
+
+{%endblock%}

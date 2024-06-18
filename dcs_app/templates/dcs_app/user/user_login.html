@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <title>User Login</title>
+    {%include 'dcs_app/common/common_css.html'%}
+</head>
+<body>
+    {%include 'dcs_app/common/header.html'%}
+    {%include 'dcs_app/common/message.html'%}
+    
+    <div class="d-block mx-auto mt-5 frm" style="height:max-content; width:max-content;">
+        <form action="{{'/user_login/'}}" method="post">
+            {% csrf_token %}
+            <h1 class="itim mb-3 text-center">User Login</h1>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" name="user_phone" id="floatingInput" placeholder="" required>
+                <label for="floatingInput">Phone Number</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" name="user_password" id="floatingInput" placeholder="" required>
+                <label for="floatingInput" >Password</label>
+            </div> 
+            <p class="text-muted">Not Registered ? <a style="color:rgb(255, 37, 77); text-decoration: none;" href="{% url 'user_registration'%}">Register Here</a></p>
+            <p class="text-muted">Login as Company <a style="color:rgb(255, 37, 77); text-decoration: none;" href="{% url 'company_login'%}">Here</a></p>
+            <button type="submit" class="btnx d-block mx-auto w-50 mt-2" style="height: 5vh;">Submit</button>
+            
+        </form>
+    </div>
+
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

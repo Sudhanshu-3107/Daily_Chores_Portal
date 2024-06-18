@@ -1,0 +1,39 @@
+{%extends 'dcs_app/companies/main.html'%}
+{%block content%}
+{%include 'dcs_app/common/message.html'%}
+{%if job_applications%}
+<div class="dc">
+   
+    {% for job_application in job_applications %}
+    {%if job_application.visibility%}
+
+    <div class="emp_card card bgcol m-2 p-1">
+        <img src="{{ job_application.js_pic.url }}" alt="Applicant Image" height="150px">
+        <div class="card-body">
+            <h2 class="pacifico">{{ job_application.hiring.job_category.emp_category }}</h2>
+            <h3>Description: {{ job_application.hiring.job_description }}</h3>
+            <h3>Location: {{ job_application.hiring.job_location }}</h3>
+            <br>
+            <h2 class="pacifico">Applicant Information</h2>
+            <h3>Name: {{ job_application.js_name }}</h3>
+            <h3>Age: {{ job_application.js_age }}</h3>
+            <h3>Gender: {{ job_application.js_gender }}</h3>
+            <h3>Address: {{ job_application.js_address }}</h3>
+            <h3>Phone: {{ job_application.js_phone }}</h3>
+            <h3>Details: {{ job_application.js_details }}</h3>
+        </div>
+        <div style="display: flex; justify-content: space-evenly;">
+            <button class="emp_btn btnx d-block mx-auto w-50" onclick="window.location.href='{% url 'accept_applicant' job_application.pk%}';">Accept</button>
+            <button class="emp_btn btny d-block mx-auto w-50" onclick="window.location.href='{% url 'reject_applicant' job_application.pk%}';">Reject</button>
+        </div>
+    </div>
+    {%else%}
+    <h3 class="text-center oswald my-5">No Applications Yet</h3>
+    {%endif%}
+    
+    {% endfor %}
+</div>
+{%else%}
+<h3 class="text-center oswald my-5">No Applications Yet</h3>
+{%endif%}
+{%endblock%}

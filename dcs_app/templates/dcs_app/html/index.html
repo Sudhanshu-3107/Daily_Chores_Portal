@@ -1,0 +1,300 @@
+{% extends 'dcs_app/html/main.html' %}
+{% block content %}
+{%include 'dcs_app/common/message.html'%}
+{%include 'dcs_app/common/header.html'%}
+{%load static%}
+
+<style>
+    .h:hover {
+        transition: 0.3s;
+        scale: 1.05;
+    }
+</style>
+<section>
+    <div class="hero">
+        <div class="bigtext ">
+            <h1 class="text-white text-center">Find the perfect</h1>
+            <h1 class="text-white text-center">worker for your need</h1>
+        </div>
+        <div class="smalltext">
+            <h4 class=" text-white" style="text-wrap: pretty;">We offer a wide range of skilled workers to help you with
+                your household or business needs.</h4>
+            <h4 class=" text-white">Whether you need a maid, cleaner, or any other type of worker, we've got you
+                covered.</h4>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button class="h p-2 m-2 itim" style="width: 120px; background-color: black; color: white;"
+                onclick="window.location.href='{%url 'user_registration'%}';">Register</button>
+            <button class="h p-2 m-2 itim"
+                style="width: 120px; background-color:transparent; color: white; border:2px solid white; border-style: inset;"
+                onclick="window.location.href='#about';">Learn More</button>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="description">
+        <div style="width: 900px;">
+    <h4 class="w-75 d-block mx-auto">Convenience</h4>
+    <h1 class="w-75 d-block mx-auto">Reliable Full-Time Workers for Your Needs</h1>
+    <p class="w-75 d-block mx-auto">Hiring full-time workers has never been easier. Our platform connects you with reliable professionals who are ready to meet your household or business needs.</p>
+
+    <div  class="w-75 d-block mx-auto">
+        <button class="h p-2 m-2 itim"
+            style="width: 120px; background-color:transparent; border:2px solid rgb(0, 0, 0); border-style: inset;"
+            onclick="window.location.href='#about';">Learn More</button>
+        <button class="h p-2 m-2 itim b-0" style="width: 120px; background-color: rgb(255, 255, 255); border: none;"
+            onclick="window.location.href='{%url 'user_registration'%}';">Register ></button>
+    </div>
+    
+</div>
+<div style="width: 1000px;">
+    <img class="d-block mx-auto" src="{% static 'dcs_app/images/maid4.jpg'%}" alt="">
+</div>
+</section>
+
+
+
+<section id="featurelist">
+<div>
+    <h2  style="max-width: 900px;">Explore a Variety of Workers for Your Home or Business</h2>
+</div>
+<div class="featurelist">
+    <div class="features">
+        <img class="d-block mx-auto" src="{% static 'dcs_app/images/cleaner.jpg'%}" alt="">
+        <h3 class="mt-5">Professional Maids for a Clean and Organized Space</h3>
+        <p class="mt-3">Our maids are highly trained and experienced in providing top-notch cleaning services for your home or business.</p>
+        <button class="mt-3 itim b-0" style=" background-color: rgb(255, 255, 255); border: none;"
+            onclick="window.location.href='#services';">Book Now ></button>
+    </div>
+    <div class="features">
+        <img class="d-block mx-auto" src="{% static 'dcs_app/images/cleaner3.jpg'%}" alt="">
+        <h3 class="mt-5">Efficient Cleaners for Spotless Results</h3>
+        <p class="mt-3">Our cleaners are dedicated to delivering exceptional cleaning solutions, leaving your space sparkling clean.</p>
+        <button class="mt-3 itim b-0" style=" background-color: rgb(255, 255, 255); border: none;"
+            onclick="window.location.href='#services';">Book Now ></button>
+    </div>
+    <div class="features">
+        <img class="d-block mx-auto" src="{% static 'dcs_app/images/gardener1.jpg'%}" alt="">
+        <h3 class="mt-5">Skilled Household Workers for Various Tasks</h3>
+        <p class="mt-3">From gardening to pet care, our household workers are proficient in handling a wide range of tasks to make your life easier.</p>
+        <button class="mt-3 itim b-0" style=" background-color: rgb(255, 255, 255); border: none;"
+            onclick="window.location.href='#services';">Book Now ></button>
+    </div>
+</div>
+    
+</section>
+
+
+
+<section id="servicedetails">
+    <div class="p-5 mb-5" style="width: 900px;">
+        <div class="mt-3 px-5" style="border-left: 3px solid black;">
+            <h3 class="mt-2">Wide Range of Services</h3>
+            <p class="mt-2">
+                We offer a variety of services to meet your needs, including maid services, cleaning services, and more. Our team of skilled workers is here to help you with all your household or business needs.
+            </p>
+        </div>
+        <div class="mt-3 px-5">
+            <h3 class="mt-2">Experienced Professionals</h3>
+            <p class="mt-2">Our workers are experienced professionals who are trained to provide top-quality service. Whether you need a maid, a cleaner, or any other type of worker, we have the right person for the job.</p>
+        </div>
+        <div class="mt-3 px-5">
+            <h3 class="mt-2">Easy Booking Process</h3>
+            <p class="mt-2">Booking a worker is quick and easy. Simply browse our categories, choose the service you need, and book a worker that fits your requirements. We make it hassle-free to find the right person for your needs.</p>
+        </div>
+    </div>
+    <div style="width: 1000px;" class="p-3 mb-5">
+        <img class="d-block mx-auto" src="{% static 'dcs_app/images/servant1.jpg'%}" alt="">
+    </div>
+</section>
+
+
+
+
+
+
+<section id="services" class="mb-5">
+     <h4 class="text-center mb-4">Categories</h4>
+    <div class="dc" style="margin: 2vh 0;"><h1 class="text-center">Discover Different Worker Categories</h1></div>
+    <p class="text-center mb-3">Browse through our diverse range of worker categories.</p>
+    <div class="dc">
+        {%for category in categories|slice:":8" %}
+        <div class="cards" style="cursor:pointer;" onclick="window.location.href='{% url 'workers' category.id %}';">
+            <div class="imdiv">
+               <img style="object-fit:fill;" class="card-img-top" src="/media/{{category.emp_category_pic}}"  alt="Card image cap">
+            </div>
+            <h3 class="card-title mb-2 text-center">{{category.emp_category}}</h3>
+            <h4 class=" card-text text-muted text-center poppins">{{category.emp_description}}</h4>
+        </div>
+        {%endfor%}
+    </div>
+    <button class="btn btn-outline-dark d-block mx-auto" style="border-radius: 0 !important;" onclick="window.location.href='/worker/';">View All</button>
+</section>
+
+
+
+
+
+<section id="companies">
+    <h1 class="text-center poppins mt-5 mb-4" style="font-size: 3.5rem;font-weight: 700;">Companies</h1>
+    <div class="dc">
+        {% for company in companies%}
+        {%if company.status == True %}
+        <div class="card bgcol m-2 p-1" onclick="window.location.href='{% url 'show_category' company.c_id %}';">
+            <img class="card-img-top p-1" src="/media/{{company.c_pic}}" height="200px" alt="Card image cap">
+            <div class="card-body">
+                <h2 class="card-title">{{company.c_name}}</h2>
+                <h4 class="card-text">{{company.c_about}}</h4>
+                <h4 class="card-text">{{company.c_city}}</h4>
+                <h4 class="card-text">{{company.c_email}}</h4>
+                <h4 class="card-text">{{company.c_phone}}</h4>
+            </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+    </div>
+</section>
+
+
+
+
+<section id="contact">
+    
+    <div class="dc" style="width: 100%; gap:3vw;">
+        <div style="padding-bottom: 12vw;">
+            <h5>Connect</h5>
+            <h1 class="mb-4">Contact Us</h1>
+            <p>Have a question or need our services? Get in touch with us!</p>
+        </div>
+        <div style="padding-bottom: 5vw;">
+            <h3 class="mb-3"><i class="far fa-envelope-open me-3"></i>Email</h3>
+            <p class="mb-4 ms-5">sudhanshuranjan3107@gmail.com</p>
+            <h3 class="mb-3"><i class="far fa-address-book me-3"></i>Phone</h3>
+            <p class="mb-4 ms-5">9670090088</p>
+            <h3 class="mb-3"><i class="far fa-building me-3"></i>Office</h3>
+            <p class="mb-4 ms-5">93 Vasundhara State, Dayal Residency, Semra, Lucknow</p>
+        </div>
+        <div style="border: 1px dotted rgb(176, 176, 176); padding: 2vw; border-radius: 1rem; margin-bottom: 6vw;">
+            <form method="post" action="{{'/contact/'}}">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="mb-2">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="mb-2">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="mb-2">
+                    <textarea style="height: 100px;" class="form-control" id="question" placeholder="Question" name="question" rows="3" required></textarea>
+                </div>
+                <button type="submit" style="background-color: black; color: white; border-radius: 1rem;" class=" w-50 p-2 d-block mx-auto mt-3">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="d-block mx-auto"
+            style="min-height: 600px; max-width: 1700px; background-color: rgb(255, 255, 255); height: 400px; border: 1px solid white; border-radius: 1rem">
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=100%25&amp;hl=en&amp;q=V3P5+4G5,bbd%20university,%20lucknow+(Daily%20Chores%20&amp;%20Security%20Portal)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+        </div>
+</section>
+
+
+
+
+<section id="feedback" style="min-height: 500px ; margin-bottom: 25px; padding: 2vw;">
+    <h1 style="margin-left: 5vw;">Customer Testimonials</h1>
+    <p style="margin-left: 5vw ;">Read what our satisfied clients have to say about us.</p>
+        <div class="scroll-container scrl" style="margin-left: 4vw; margin-right: 4vw; min-height: 340px;">
+            <div style="display: inline-flex;">
+                {% for feedback in feedbacks %}
+                <div class="emp_card card bgcol m-2 p-1" style="width: 320px; min-height: 320px;">
+                    {% if feedback.feedback.user.u_pic %}
+                    <img src="{{ feedback.feedback.user.u_pic.url }}" class="mt-3 d-block mx-auto" style="border-radius: 50%;"
+                        alt="{{ booking.employee.emp_name }} Pic" height="70px" width="70px">
+                    {% else %}
+                    <img src="{%static 'dcs_app/images/ac.png'%}" class="mt-3 d-block mx-auto" alt="Emp Pic"
+                        style="border-radius: 50%;" height="80px" width="80px">
+                    {%endif%}
+                    <div class="card-body">
+                        <h2 class="card-title pacifico text-center">{{ feedback.feedback.user.u_name }}</h2>
+                        <h3 class="card-text">Employee Name: {{ feedback.feedback.employee.emp_name }}</h3>
+                        <h3 class="card-text">Employee Category: {{ feedback.feedback.employee.emp_reg.emp_category }}</h3>
+                        <h3 class="card-text">Company: {{ feedback.feedback.employee.emp_reg.comp_reg.c_name}}</h3>
+                        <h3 class="card-text">Rating: <span style="color: rgb(254, 54, 88) !important;">{{feedback.rating}}</span></h3>
+                        <h3 class="card-text">Remark: {{ feedback.remark }}</h3>
+                        <h4 class="card-text text-muted">Time: {{ feedback.created }}</h4>
+                    </div>
+                    {% if request.session.session_key == feedback.feedback.user.u_phone %}
+        
+                    <style>
+                        .emp_card {
+                            height: 310px;
+        
+                            &:hover {
+                                height: 360px;
+                            }
+                        }
+                    </style>
+        
+                    <div style="display: flex; justify-content: space-evenly;">
+                        <form method="post" action="{% url 'feedback' feedback.feedback.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="emp_btn btnz d-block mx-auto p-2 mb-2"
+                                style="width: 120px;">Edit</button>
+                        </form>
+                        <form method="post" action="{% url 'delete_feedback' feedback.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="emp_btn btnx d-block mx-auto p-2 mb-2"
+                                style="width: 120px;">Delete</button>
+                        </form>
+                    </div>
+        
+                    {%endif%}
+                </div>
+                {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+<section id="cta">
+    <div class="mediumtext text-white">
+        <h2>Find Your Perfect Worker Today</h2>
+    </div>
+    <div class="smalltext text-white">
+    <h4>Browse our wide range of categories and hire the best workers for your needs.</h4>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <button class="h p-2 m-2 itim" style="width: 120px; background-color: black; color: white;"
+            onclick="window.location.href='{%url 'user_registration'%}';">Register</button>
+        <button class="h p-2 m-2 itim"
+            style="width: 120px; background-color:transparent; color: white; border:2px solid white; border-style: inset;"
+            onclick="window.location.href='#contact';">Contact Us</button>
+    </div>
+</section>
+
+
+
+<section id="about" style="margin-bottom: 25px;">
+    <div style="display: flex; justify-content: center; gap: 5vw;">
+        <img src="{%static 'dcs_app/images/cleaning.jpg'%}" class="pic">
+        <div class="text">
+            <h2>About Us</h2>
+            <h5>Daily Chores & Security Portal</h5>
+            <p>At daily chores and security portal provide instant help regarding all household and other needs, we
+                provide prechecked individuals for hire and for the best price in the market.
+                Our team chooses best man for best job, they are thoroughly tested and verified by our experts.</p>
+            <div class="data">
+                <a href="{{'/careers/'}}" class="hire">Join Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

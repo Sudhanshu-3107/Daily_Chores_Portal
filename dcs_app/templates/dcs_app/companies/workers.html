@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Workers</title>
+    {%include 'dcs_app/common/common_css.html'%}
+</head>
+
+<body>
+    {%include 'dcs_app/common/header.html'%}
+
+    <h1 class="text-center oswald" style="font-weight: 800; font-size: 3rem;">{{emp.0.emp_reg.emp_category}}s</h1>
+<div class="dc">
+    
+    {% for ad in emp%}
+    <div class=" emp_card card bgcol m-2 ">
+        <img class="card-img-top p-1"
+            src="/media/{{ad.emp_pic}}" height="200px" alt="Card image cap">
+        <div class="card-body">
+            
+            <h2 class="card-subtitle mb-2">{{ad.emp_name}}</h2>
+            <h3 class="card-subtitle mb-2"><strong>Status: </strong> {{ad.emp_status}}</h3>
+            <h4 class="card-subtitle mb-2"><strong>City: </strong>{{ad.emp_city}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Address: </strong> {{ad.emp_addr}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Company: </strong> {{ad.emp_reg.comp_reg.c_name}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Charge:</strong> ₹{{ad.emp_reg.category_charge}} per month</h4>
+            {%if ad.emp_status == 'Available'%}
+            <button class="emp_btn btnx d-block mx-auto w-50" onclick="window.location.href='{% url 'booking_req' ad.emp_phone%}';">Book Now</button>
+            {%endif %}
+
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+    <script>
+        window.onload = function(){
+          if (window.history.replaceState){
+            window.history.replaceState(null, null, window.location.href);
+          }
+        } 
+      </script>
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

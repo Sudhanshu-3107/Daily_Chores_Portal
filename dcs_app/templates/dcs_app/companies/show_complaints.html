@@ -1,0 +1,56 @@
+{% extends 'dcs_app/companies/main.html' %}
+{% block content %}
+{%load static%}
+<h1 class="pacifico text-center">Complaints</h1>
+{%if complaints%}
+<div class="dc">
+    {% for complaint in complaints %}
+    <div class="card bgcol m-2 p-1" style="width: 400px;">
+        <div style="display: flex; justify-content: space-evenly;">
+        <div class="card-body">
+            <h2 class="card-title pacifico">Employee Details</h2>
+            <h3 class="card-text">Employee Name: {{ complaint.booking.employee.emp_name}}</h3>
+            <h3 class="card-text">Employee Category: {{ complaint.booking.employee.emp_reg.emp_category}}</h3>
+            <h3 class="card-text mb-4">Complaint: {{ complaint.complaint }}</h3>
+            <h2 class="card-title pacifico">User Details</h2>
+            <h3 class="card-title">Customer: {{ complaint.booking.user.u_name}}</h3>
+            <h3 class="card-title">Number: {{ complaint.booking.user.u_phone}}</h3>
+            <h4 class="card-text text-muted">Time: {{ complaint.created }}</h4>
+        </div>
+        <div>
+            {% if complaint.booking.employee.emp_pic %}
+            <img src="{{ complaint.booking.employee.emp_pic.url }}" alt="{{ complaint.booking.employee.emp_name }} Pic"
+                height="150px" class="d-block mx-auto mt-2">
+            {% else %}
+            <img src="{%static 'dcs_app/images/ac.png'%}" alt="Emp Pic" height="150px">
+            {%endif%}
+            {% if complaint.booking.visibility == True %}
+            <div class="frm" style="padding: 1vh; margin: 1vh;">
+                <form action="/show_complaints/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="complaint_id" value="{{ complaint.booking.id }}">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="resolve" placeholder="" id="floatingTextarea2"
+                            style="height: 100px" required>{{ complaint.resolve }}</textarea>
+                        <label for="floatingTextarea2" style="color: black;">Resolve</label>
+                    </div>
+                    <button type="submit" class="btnz d-block mx-auto w-100 mt-3 p-2" style="height: 5vh;">Update
+                        Resolve</button>
+                </form>
+            </div>
+            {%else%}
+            <div class="card-body">
+                <h3 class="card-title">Resolve: {{ complaint.resolve}}</h3>
+                <h4 class="card-text text-muted">Time: {{ complaint.updated }}</h4>
+            </div>
+            {%endif%}
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{%else%}
+
+<h3 class="oswald text-center my-5">No Complaints Yet</h3>
+{%endif%}
+{% endblock %}

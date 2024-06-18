@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <title>Add Category</title>
+    {%include 'dcs_app/common/common_css.html'%}
+</head>
+<body>
+  {%include 'dcs_app/common/header.html'%}
+{%include 'dcs_app/common/message.html'%}
+    <div class="d-block mx-auto mt-5 frm" style="height:max-content; width:max-content;">
+        <form action="{{'/add_category/'}}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="itim mb-3 text-center">Add Category</h1>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="emp_cat" id="floatingInput" placeholder="" required>
+                <label for="floatingInput">Employee Category</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="file" class="form-control" name="epic" id="floatingInput" placeholder="" required>
+              <label for="floatingInput" style="color: black;">Category Image</label>
+          </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="emp_des" id="floatingInput" placeholder="" required>
+                <label for="floatingInput">Employee Description</label>
+            </div>
+            <button type="submit" class="btnx d-block mx-auto w-50 mt-2" style="height: 5vh;">Submit</button>
+        </form>
+    </div>
+
+
+    <script>
+      window.onload = function(){
+        if (window.history.replaceState){
+          window.history.replaceState(null, null, window.location.href);
+        }
+      } 
+    </script>
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

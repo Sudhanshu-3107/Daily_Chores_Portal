@@ -1,0 +1,49 @@
+{% extends 'dcs_app/user/main.html' %}
+{%load static%}
+{% block content %}
+
+<div class="dc">
+    <div class="card bgcol m-2 ">
+        {% if employee.emp_pic %}
+        <img class="card-img-top p-1" src="{{ employee.emp_pic.url }}" height="200px" alt="Card image cap">
+        {% else %}
+        <img src="{%static 'dcs_app/images/ac.png'%}" alt="Emp Pic" height="150px">
+        {%endif%}
+
+        <div class="card-body">
+            <h3 class="card-subtitle mb-2">User : {{ form.initial.user }}</h3>
+            <h3 class="card-subtitle mb-2">Employee : {{ form.initial.employee }}</h3>
+            <h3 class="card-subtitle mb-2">Category : {{ employee.emp_reg.emp_category }}</h3>
+            <h3 class="card-subtitle mb-2">Price : {{ employee.emp_reg.category_charge }}</h3>
+            <h3 class="card-subtitle mb-2">City : {{employee.emp_city }}</h3>
+            <h3 class="card-subtitle mb-2">Address : {{employee.emp_addr }}</h3>
+        </div>
+    </div>
+
+
+    <div class="frm bgcol p-2" style="width: 320px !important;">
+        <img class="d-block mx-auto" src="{%static 'dcs_app/images/qr.png'%}" width="200px" height="200px" alt="">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="id_duration" class="form-label">Duration:</label>
+                <input type="range" name="duration" id="id_duration" min="1" max="12" step="1"
+                    value="{{ form.initial.duration }}">
+                <span id="durationText">6</span> Months
+            </div>
+                <label for="id_payment" class="form-label">Payment Screenshot</label>
+                {{ form.payment }}
+
+            <button type="submit" class="btnx w-50 d-block mx-auto mt-2">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    var durationInput = document.getElementById('id_duration');
+    var durationText = document.getElementById('durationText');
+
+    durationInput.addEventListener('input', function () {
+        durationText.innerText = this.value;
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{%extends 'dcs_app/companies/main.html'%}
+{%block content%}
+
+    <h1 class="text-center oswald" style="font-weight: 800; font-size: 3rem;">Workers of {{user.c_name}}</h1>
+    
+<div class="dc" >
+    
+    {% for ad in emp%}
+    <div class=" emp_card card bgcol m-2 ">
+        <img class="card-img-top p-1"
+            src="/media/{{ad.emp_pic}}" height="200px" alt="Card image cap">
+        <div class="card-body">
+            <h2 class="card-subtitle mb-2">{{ad.emp_name}}</h2>
+            <h3 class="card-subtitle mb-2"><strong>Category: </strong> {{ad.emp_reg.emp_category}}</h3>
+            <h3 class="card-subtitle mb-2"><strong>Status: </strong> {{ad.emp_status}}</h3>
+            <h4 class="card-subtitle mb-2"><strong>City: </strong>{{ad.emp_city}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Address: </strong> {{ad.emp_addr}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Company: </strong> {{ad.emp_reg.comp_reg.c_name}}</h4>
+            <h4 class="card-subtitle mb-2"><strong>Charge:</strong> ₹{{ad.emp_reg.category_charge}} per month</h4>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+{%endblock content%}

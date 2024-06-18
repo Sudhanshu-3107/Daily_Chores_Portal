@@ -1,0 +1,16 @@
+{% extends 'dcs_app/user/main.html' %}
+{%include 'dcs_app/common/message.html'%}
+{% block content %}
+
+
+<h1 class="itim text-center">Submit Complaint</h1>
+<div class="dc">
+    <div class="frm">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btnx p-3 m-2 d-block mx-auto w-50">Submit</button>
+    </form> 
+</div>
+</div>
+{%endblock%}

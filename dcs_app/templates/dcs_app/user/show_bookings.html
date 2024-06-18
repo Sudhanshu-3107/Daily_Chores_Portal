@@ -1,0 +1,66 @@
+{% extends 'dcs_app/user/main.html' %}
+{%include 'dcs_app/common/message.html'%}
+{% block content %}
+{%load static%}
+
+<style>
+    .emp_card{
+        height: 400px;
+
+        &:hover{
+            height: fit-content;
+        }
+    }
+</style>
+<h1 class="pacifico text-center">Your Bookings</h1>
+{% if bookings %}
+<div class="dc">
+    {% for booking in bookings %}
+    {% if booking.visibility == True %}
+    <div class="emp_card card bgcol m-2 p-1" style="width: 300px;">
+        {% if booking.employee.emp_pic %}
+        <img src="{{ booking.employee.emp_pic.url }}" alt="{{ booking.employee.emp_name }} Pic" height="150px">
+        {% else %}
+        <img src="{%static 'dcs_app/images/ac.png'%}" alt="Emp Pic" height="150px">
+        {%endif%}
+        <div class="card-body">
+            <h2 class="card-text">Emloyee Name: {{ booking.employee.emp_name }}</h2>
+            <h3 class="card-text">Employee Category: {{ booking.employee.emp_reg.emp_category }}</h3>
+            <h3 class="card-text">Status: {{ booking.status }}</h3>
+            {% if booking.status == 'Confirmed'%}
+            <h3 class="card-text">Phone: {{ booking.employee.emp_phone }}</h3>
+            <h3 class="card-text">City: {{ booking.employee.emp_city }}</h3>
+            {%endif%}
+            <h3 class="card-text">Duratrion : {{ booking.duration }} Months</h3>
+            <h4 class="card-text text-muted">Booking Time : {{ booking.created }}</h4>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+        
+        {%if booking.status == 'Confirmed'%}
+
+        <form mthod="post" action="{% url 'feedback' booking.id %}">
+            <button type="submit" class="emp_btn btny w-100 d-block mx-auto p-2 mb-1">Feedback</button>
+        </form>
+        
+        <form mthod="post" action="{% url 'complaint' booking.id %}">
+            <button type="submit" class="emp_btn btnz w-100 d-block mx-auto p-2 mb-1">Complaint</button>
+        </form>
+
+        {%endif%}
+    </div>
+    <form method="post" action="{% url 'hide_booking' booking.id %}">
+        {% csrf_token %}
+        {% if booking.status == 'Pending'%}
+        <button type="submit" class="emp_btn btnx w-75 d-block mx-auto p-2 mb-1">Cancel Booking</button>
+        {% else %}
+        <button type="submit" class="emp_btn btnx w-75 d-block mx-auto p-2 mb-1">Release Worker</button>
+        {%endif%}
+    </form>
+    </div>
+    {%endif%}
+    {% endfor %}
+</div>
+{% else %}
+<h4 class="itim text-center mt-5">You have no bookings yet.</h4>
+{% endif %}
+{% endblock %}

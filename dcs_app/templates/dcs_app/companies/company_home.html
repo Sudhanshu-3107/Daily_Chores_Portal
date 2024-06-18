@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <title>Company Homepage</title>
+    {%include 'dcs_app/common/common_css.html'%}
+    <style>
+      .gradient-custom {
+
+/* fallback for old browsers */
+background: #ff3556;
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgb(255, 76, 103),rgb(47, 47, 47))
+}
+h3{
+  color: black;
+}
+p{
+  font-size: 1rem !important;
+}
+    </style>
+</head>
+<body>
+
+  {%include 'dcs_app/common/header.html'%}
+
+
+  <section>
+    <div class="container py-5 mt-3">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3" style="border-radius: .5rem; width: 30vw; background-color: rgb(255, 255, 255);">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="/media/{{comp.c_pic}}"
+                  alt="Avatar" class="img-fluid my-5" style="width: 150px; border-radius: 0.5rem;" />
+                <h2 class="text-white itim">{{comp.c_name}}</h2>
+                <a href="{{'/company_edit_profile/'}}"><i class="far fa-edit mb-5 text-white"></i></a>
+              </div>
+              <div class="col-md-8" style="color: black;">
+                <div class="card-body p-4">
+                  <h3>Information</h3>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h3>Email</h3>
+                      <p class="text-muted">{{comp.c_email}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h3>Phone</h3>
+                      <p class="text-muted">{{comp.c_phone}}</p>
+                    </div>
+                  </div>
+                  <h3>More</h3>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h3>City</h3>
+                      <p class="text-muted">{{comp.c_city}}</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h3>Address</h3>
+                      <p class="text-muted">{{comp.c_addr}}</p>
+                    </div>
+                  </div>
+                <!--- <div class="d-flex justify-content-start">
+                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    window.onload = function(){
+      if (window.history.replaceState){
+        window.history.replaceState(null, null, window.location.href);
+      }
+    }
+  </script>
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

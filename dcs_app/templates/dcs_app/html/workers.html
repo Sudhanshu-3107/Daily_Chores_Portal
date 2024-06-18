@@ -1,0 +1,21 @@
+{%extends 'dcs_app/html/main.html'%}
+{%block content%}
+{%include 'dcs_app/common/only_home.html'%}
+
+
+<section id="services" class="mb-5">
+    <h4 class="text-center mb-4">Categories</h4>
+   <div class="dc" style="margin: 2vh 0;"><h1 class="text-center">Discover All Worker Categories</h1></div>
+   <div class="dc">
+       {%for category in categories%}
+       <div class="cards" style="cursor:pointer;" onclick="window.location.href='{% url 'workers' category.id %}';">
+           <div class="imdiv">
+              <img style="object-fit:fill;" class="card-img-top" src="/media/{{category.emp_category_pic}}"  alt="Card image cap">
+           </div>
+           <h3 class="card-title mb-2 text-center">{{category.emp_category}}</h3>
+           <h4 class=" card-text text-muted text-center poppins">{{category.emp_description}}</h4>
+       </div>
+       {%endfor%}
+   </div>
+</section>
+{%endblock content%}

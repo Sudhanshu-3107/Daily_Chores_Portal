@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <title>Edit Profile</title>
+    {%include 'dcs_app/common/common_css.html'%}
+    <style>
+      .gradient-custom {
+/* fallback for old browsers */
+background: #000000;
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(99, 99, 99, 0.8), rgba(0, 0, 0, 0.8))
+}
+p{
+  font-size: 1rem !important;
+}
+    </style>
+</head>
+<body>
+
+  {%include 'dcs_app/common/header.html'%}
+
+<form action="/company_edit_profile/" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <section>
+    <div class="container py-5 mt-3 itim">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+          <div class="card mb-3 bgcol" style="border-radius: .5rem; width: 35vw;">
+            <div class="row g-0">
+              <div class="col-md-4 gradient-custom text-center"
+                style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                <img src="/media/{{comp.c_pic}}"
+                alt="Avatar" class="img-fluid my-5" style="width: 150px; border-radius: 0.5rem;" />
+                <input style="width: 150px; font-size: 0.6rem; margin-bottom: 3vh;" type="file" name="cpic" >
+                <h3><input type="text" name="name" value="{{comp.c_name}}" class="form-control d-block mx-auto w-75"></h3>
+              </div>
+              <div class="col-md-8" >
+                <div class="card-body p-4">
+                  <h3>Information</h3>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h3>Email</h3>
+                      <p><input type="email" name="email" value="{{comp.c_email}}" class="form-control"></p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h3>Phone</h3>
+                      <p><input  type="number" name="phone" value="{{comp.c_phone}}" class="form-control"></p>
+                    </div>
+                  </div>
+                  <h3>More</h3>
+                  <hr class="mt-0 mb-4">
+                  <div class="row pt-1">
+                    <div class="col-6 mb-3">
+                      <h3>City</h3>
+                      <p><input  type="text" name="city" value="{{comp.c_city}}" class="form-control"></p>
+                    </div>
+                    <div class="col-6 mb-3">
+                      <h3>Address</h3>
+                      <textarea  name="address" class="form-control" id="address" cols="10" rows="2">{{comp.c_addr}}</textarea>
+                    </div>
+                  
+                  </div>
+                  <div >
+                    <button class="btnx w-25 d-block mx-auto">Submit</button>
+                  </div>
+                  <!--<div class="d-flex justify-content-start">
+                    <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                    <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<script>
+  window.onload = function(){
+    if (window.history.replaceState){
+      window.history.replaceState(null, null, window.location.href);
+    }
+  } 
+</script>
+    {%include 'dcs_app/common/footer.html'%}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
