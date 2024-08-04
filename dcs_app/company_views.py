@@ -300,3 +300,8 @@ def company_logout(request):
 
 
 
+def remwor(request, pk):
+    obj = Employee_Reg.objects.get(pk=pk)
+    obj.delete()
+    messages.success(request, 'Worker Removed')
+    return redirect('show_workers')

@@ -255,10 +255,29 @@
                     {%endif%}
                 </div>
                 {% endfor %}
-        </div>
 
+
+            {% for feedback in feedbk %}
+            <div class="emp_card card bgcol m-2 p-1" style="width: 320px; min-height: 320px;">
+                {% if feedback.user.u_pic %}
+                <img src="{{ feedback.user.u_pic.url }}" class="mt-3 d-block mx-auto" style="border-radius: 50%;"
+                    alt="{{ booking.employee.emp_name }} Pic" height="70px" width="70px">
+                {% else %}
+                <img src="{%static 'dcs_app/images/ac.png'%}" class="mt-3 d-block mx-auto" alt="Emp Pic"
+                    style="border-radius: 50%;" height="80px" width="80px">
+                {%endif%}
+                <div class="card-body">
+                    <h2 class="card-title pacifico text-center">{{ feedback.user.u_name }}</h2>
+                    <h3 class="card-text">Rating: <span style="color: rgb(254, 54, 88) !important;">{{feedback.rating}}</span></h3>
+                    <h3 class="card-text">Feedback: {{ feedback.remark }}</h3>
+                    <h4 class="card-text text-muted">Time: {{ feedback.created }}</h4>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
     </div>
 </section>
+
 
 
 

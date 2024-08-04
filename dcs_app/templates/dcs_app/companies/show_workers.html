@@ -3,6 +3,13 @@
 
     <h1 class="text-center oswald" style="font-weight: 800; font-size: 3rem;">Workers of {{user.c_name}}</h1>
     
+
+        {%if messages%}
+
+        {%for m in messages%}
+        <h3 class="text-center oswald my-5">{{m}}</h3>
+        {%endfor%}
+        {%endif%}
 <div class="dc" >
     
     {% for ad in emp%}
@@ -18,6 +25,8 @@
             <h4 class="card-subtitle mb-2"><strong>Company: </strong> {{ad.emp_reg.comp_reg.c_name}}</h4>
             <h4 class="card-subtitle mb-2"><strong>Charge:</strong> ₹{{ad.emp_reg.category_charge}} per month</h4>
         </div>
+
+        <a class="btn btn-danger btn-sm d-block mx-auto w-75 mb-4" href="{%url 'remwor' ad.pk%}">Remove</a>
     </div>
     {%endfor%}
 </div>

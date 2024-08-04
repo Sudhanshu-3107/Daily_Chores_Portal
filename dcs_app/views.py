@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Feedback, Contact,Comp_Reg, Employee_Category, Hiring, User_Reg
+from .models import Feedback, Contact,Comp_Reg, Employee_Category, Hiring, User_Reg, Feedbk
 from django.contrib import messages
 from .forms import JobForm
 
@@ -9,6 +9,7 @@ def home(request):
     categories = Employee_Category.objects.all()
     company_list = Comp_Reg.objects.order_by('-date')
     all_feedback = Feedback.objects.all()
+    feedbk = Feedbk.objects.all()
     user_details = request.session.get("session_key")
     user_obj = None
     if user_details:
@@ -19,7 +20,7 @@ def home(request):
                 user_obj = Comp_Reg.objects.get(pk=user_details)
             except:
                 return render(request, 'dcs_app/html/index.html', {"categories":categories, "companies":company_list, "feedbacks":all_feedback, "user":user_obj})
-    context = {"categories":categories, "companies":company_list, "feedbacks":all_feedback, "user":user_obj}
+    context = {"categories":categories, "companies":company_list, "feedbacks":all_feedback, "user":user_obj, 'feedbk':feedbk}
     return render(request, 'dcs_app/html/index.html', context)
 
 

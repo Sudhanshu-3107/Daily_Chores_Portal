@@ -1,12 +1,19 @@
 {% extends 'dcs_app/companies/main.html' %}
 {% block content %}
-<h1 class="oswald text-center">Company Bookings</h1>
+<style>body{
+    background-color: rgb(243, 243, 243);
+}</style>
+<h1 class="oswald text-center mt-5">Company Bookings</h1>
+
+<div class="my-5 mx-5" style="border: 1px solid rgb(224, 224, 224);  box-shadow: 1px 1px 5px grey; background-color: white;">
+    
+
 
 
 <h3 class="oswald text-center my-4">Pending Bookings</h3>
 
 <div style="margin: 0 5vw;  box-shadow: 1px 1px 5px grey;">
-    <table class="table table-responsive table-striped">
+    <table class="table table-responsive ">
         <thead>
             <tr>
             <th>User Name</th>
@@ -24,7 +31,7 @@
 
             {% for booking in bookings %}
             <tr>
-                {% if booking.visibility %}
+                {% if booking.visibility and booking.status == "Pending" %}
                 <td>{{ booking.user.u_name }}</td>
                 <td>{{ booking.employee.emp_name }}</td>
                 <td>{{ booking.employee.emp_reg.emp_category}}</td>
@@ -37,7 +44,7 @@
                     <input type="hidden" name="booking_id" value="{{ booking.id }}">
                     <td>
                         <select class="form-control" name="status">
-                            <option value="">{{booking.status}}</option>
+                            <option disabled value="">{{booking.status}}</option>
                             <option value="Confirmed" >Confirm
                             </option>
                             <option value="Pending">Pending
@@ -63,13 +70,86 @@
 
 
 </div>
+</div>
 
+
+
+
+<div class="my-5 mx-5" style="border: 1px solid rgb(226, 226, 226);  box-shadow: 1px 1px 5px grey; background-color: white;">
+    
+
+<h3 class="oswald text-center my-4">Confirmed Bookings</h3>
+
+
+<div style="margin: 0 5vw;  box-shadow: 1px 1px 5px grey;">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+            <th>User Name</th>
+            <th>Worker Name</th>
+            <th>Category</th>
+            <th>Duration</th>
+            <th>Time</th>
+            <th>Payment Proof</th>
+            <th>Booking Status</th>
+            <th>Response</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for booking in bookings %}
+            <tr>
+                {% if booking.visibility and booking.status == "Confirmed" %}
+                <td>{{ booking.user.u_name }}</td>
+                <td>{{ booking.employee.emp_name }}</td>
+                <td>{{ booking.employee.emp_reg.emp_category}}</td>
+                <td>{{ booking.duration }} Months</td>
+                <td>{{ booking.created }}</td>
+                <td><a href="{{ booking.payment.url }}">Screenshot</a></td>
+                
+                <form action="/bookings/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                    <td>
+                        <select class="form-control" name="status">
+                            <option disabled value="">{{booking.status}}</option>
+                            <option value="Confirmed" >Confirm
+                            </option>
+                            <option value="Pending">Pending
+                            </option>
+                            <option value="Cancel">Cancel</option>
+                        </select></td>
+                    <td>
+                        <textarea class="form-control" name="response" placeholder="" id="floatingTextarea2"
+                            style="height: 30px" required>{{ booking.response }}</textarea>
+                    </div></td>
+                    
+                    <td><button type="submit" class="btnx d-block mx-auto w-75 p-1">Update
+                        </button></td>
+                </form>
+                
+                {%endif%}
+            </tr>
+
+            {%endfor%}
+
+
+        </tbody>
+    </table>
+
+
+</div>
+</div>
+
+<div class="my-5 mx-5" style="border: 1px solid rgb(224, 224, 224);  box-shadow: 1px 1px 5px grey; background-color: white;">
+    
 
 
 <h3 class="oswald text-center mt-5 mb-4">Past Bookings</h3>
 <div style="margin: 0 5vw;  box-shadow: 1px 1px 5px grey;">
 
-    <table class="table table-responsive table-striped">
+    <table class="table table-responsive ">
         <thead>
             <tr>
             <th>User Name</th>
@@ -102,6 +182,7 @@
     </table>
 
 
+</div>
 </div>
 
 {% endblock %}

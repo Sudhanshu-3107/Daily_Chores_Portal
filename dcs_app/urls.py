@@ -35,4 +35,6 @@ path("worker/",views.worker,name="worker"),
 path('reject_applicant/<int:pk>/', company_views.reject_applicant, name='reject_applicant'),
 path('accept_applicant/<int:pk>/', company_views.accept_applicant, name='accept_applicant'),
 path('show_workers/', company_views.show_workers, name='show_workers'),
+path('remwor/<int:pk>/', company_views.remwor, name='remwor'),
+path('feedbk/',user_views.feedbk, name='feedbk'),
 ]

@@ -180,3 +180,13 @@ class Feedback(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+
+class Feedbk(models.Model):
+    user = models.ForeignKey(User_Reg, on_delete=models.DO_NOTHING)
+    remark = models.TextField()
+    rating = models.CharField(max_length=10, default="★★★★★")
+    created = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created']

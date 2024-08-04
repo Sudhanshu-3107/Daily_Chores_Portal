@@ -28,7 +28,6 @@
             {%if ad.emp_status == 'Available'%}
             <button class="emp_btn btnx d-block mx-auto w-50" onclick="window.location.href='{% url 'booking_req' ad.emp_phone%}';">Book Now</button>
             {%endif %}
-
         </div>
     </div>
     {%endfor%}

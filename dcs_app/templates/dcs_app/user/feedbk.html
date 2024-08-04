@@ -1,0 +1,75 @@
+{% extends 'dcs_app/user/main.html' %}
+{% include 'dcs_app/common/message.html' %}
+{% block styles %}
+<style>
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc !important;
+    }
+
+    .star-rating input[type="radio"]:checked + label,
+    .star-rating input[type="radio"]:checked + label ~ label {
+        color: rgb(255, 31, 79) !important;
+    }
+
+    .star-rating input[type="radio"]:checked + label ~ label {
+        color: rgb(255, 31, 79) !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="itim text-center">Submit Feedback</h1>
+<div class="dc">
+    <div class="frm">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_remark">Remark:</label>
+                <textarea class="form-control" name="remark" id=""></textarea>
+            </div>
+
+            <div class="form-group" style="display: flex; justify-content: center;">
+                <div class="star-rating">
+                    <input type="radio" id="star1" name="rating" value="★">
+                    <label for="star1" title="1 star">★</label>
+                    <input type="radio" id="star2" name="rating" value="★★">
+                    <label for="star2" title="2 stars">★</label>
+                    <input type="radio" id="star3" name="rating" checked value="★★★">
+                    <label for="star3" title="3 stars">★</label>
+                    <input type="radio" id="star4" name="rating" value="★★★★">
+                    <label for="star4" title="4 stars">★</label>
+                    <input type="radio" id="star5" name="rating" value="★★★★★">
+                    <label for="star5" title="5 stars">★</label>
+                </div>
+            </div>
+            <button type="submit" class="btnx p-2 m-1 d-block mx-auto w-50">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var stars = document.querySelectorAll('.star-rating label');
+        stars.forEach(function(star) {
+            star.addEventListener('click', function() {
+                var selectedValue = this.previousElementSibling.value;
+                console.log('Selected rating:', selectedValue);
+                this.classList.add('selected');
+                var prevStars = document.querySelectorAll('.star-rating label');
+                var selectedStarIndex = Array.from(prevStars).indexOf(this);
+                for (var i = 0; i < selectedStarIndex; i++) {
+                    prevStars[i].classList.add('selected');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

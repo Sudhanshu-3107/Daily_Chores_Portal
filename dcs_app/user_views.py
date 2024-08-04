@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import User_Reg, Employee_Booking, Employee_Category, Employee_Reg, Feedback, Complaint
+from .models import User_Reg, Employee_Booking, Employee_Category, Employee_Reg, Feedback, Complaint, Feedbk
 from django.contrib import messages
 from .forms import BookingForm, ComplaintForm, FeedbackForm
 
@@ -177,3 +177,18 @@ def inbox(request):
 def logout(request):
     request.session.flush()
     return redirect('home')
+
+
+def feedbk(request):
+    if request.method == 'GET':
+        return render(request, 'dcs_app/user/feedbk.html')
+    if request.method == 'POST':
+        remark = request.POST["remark"]
+        rating = request.POST["rating"]
+        feedobj = Feedbk()
+        feedobj.user = User_Reg.objects.get(pk=request.session.get('session_key'))
+        feedobj.rating = rating
+        feedobj.remark = remark
+        feedobj.save()
+        messages.success(request, 'Feedback Recorded Succefully')
+        return redirect('home')
